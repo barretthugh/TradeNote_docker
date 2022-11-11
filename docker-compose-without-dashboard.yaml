@@ -7,7 +7,7 @@ services:
     volumes:
       - tradenotedb:/data/db
     env_file: env.env
-    restart: alway
+    restart: always
 
   parse-server:
     image: parseplatform/parse-server:5.3.0
@@ -19,7 +19,7 @@ services:
     restart: always
 
   tradenote:
-    image: barretthugh/tradenote
+    image: tradenote
     ports:
       - '7777:80'
     depends_on:
@@ -31,3 +31,8 @@ services:
       timeout: 10s
       retries: 3
     restart: always
+
+volumes:
+  tradenotedb:
+    external:
+      name: tradenotedb

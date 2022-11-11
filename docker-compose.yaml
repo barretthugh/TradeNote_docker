@@ -19,7 +19,7 @@ services:
     restart: always
 
   tradenote:
-    image: t1
+    image: tradenote
     ports:
       - '7777:80'
     depends_on:
@@ -38,3 +38,9 @@ services:
       - '4040:4040'
     env_file: env.env
     restart: always
+
+
+volumes:
+  tradenotedb:
+    external:
+      name: tradenotedb
