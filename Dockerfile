@@ -1,25 +1,19 @@
-FROM nginx:alpine
+FROM alpine
+ENV MONGO_URI=$MONGO_URI
+ENV APP_ID=$APP_ID
+ENV MASTER_KEY=$MASTER_KEY
+ENV PARSE_DASHBOARD_USER_ID=$PARSE_DASHBOARD_USER_ID
+ENV PARSE_DASHBOARD_USER_PASSWORD=$PARSE_DASHBOARD_USER_PASSWORD
 
-COPY addclasses.sh /addclasses.sh
-COPY entrypoint.sh /entrypoint.sh
+RUN apk update && apk add nano npm nodejs wget bash --no-cache coreutils git
+RUN npm install --global gulp-cli
 
-RUN apk update \
-  && apk add nano npm wget bash --no-cache coreutils git \
-  && npm install --global gulp-cli
+RUN git clone https://github.com/Eleven-Trading/TradeNote
+RUN mv TradeNote/ app
+WORKDIR /app
 
-RUN mkdir -p /usr/share/nginx/html/tmp/ \
-  && cd /usr/share/nginx/html/tmp/ \
-  && git clone https://github.com/Eleven-Trading/TradeNote.git \
-  && cd TradeNote \
-  && npm install \
-  && chmod +x /addclasses.sh \
-  && chmod +x /entrypoint.sh
-
-WORKDIR /usr/share/nginx/html/
+RUN npm install
+RUN gulp prod
 
 EXPOSE 7777
-
-
-ENTRYPOINT ["/entrypoint.sh"]
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]

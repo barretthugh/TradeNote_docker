@@ -1,20 +1,17 @@
 docker image for TradeNote https://github.com/Eleven-Trading/TradeNote
 
-## build TradeNote image:
-```
-docker build . -t tradenote
-```
+
 
 ## deployment (wait at least 1 minute for services up and data creation):
 ```
 1. create volume for mongodb
     docker volume create tradenotedb
 
-2. start up with parse-dashboard
+2. start up without parse-dashboard
     docker-compose up -d
 
-  or without parse-dashboard
-    docker-compose -f docker-compose-without-dashboard.yaml up -d
+  or with parse-dashboard
+    docker-compose -f docker-compose-with-dashboard.yaml up -d
 ```
 
 ## stop/remove container:
@@ -28,7 +25,7 @@ docker build . -t tradenote
 ```
 docker-compose down
 
-docker build . -t tradenote
+docker rmi barretthugh/tradenote
 
 docker-compose up -d
 ```
