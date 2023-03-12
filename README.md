@@ -1,5 +1,12 @@
 docker image for TradeNote https://github.com/Eleven-Trading/TradeNote
 
+## edit the env file to match your environment and rename the to env.env:
+```
+APP_ID=APP_ID
+MASTER_KEY=MASTER_KEY
+PARSE_DASHBOARD_USER_ID=admin
+PARSE_DASHBOARD_USER_PASSWORD=admin
+```
 
 
 ## deployment (wait at least 1 minute for services up and data creation):
