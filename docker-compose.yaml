@@ -21,3 +21,4 @@ services:
 volumes:
   tradenotedb:
     name: tradenotedb
+    external: true

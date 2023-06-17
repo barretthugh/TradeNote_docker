@@ -2,7 +2,7 @@ docker image for TradeNote https://github.com/Eleven-Trading/TradeNote
 
 ## edit the env file to match your environment and rename to env.env:
 ```
-MONGO_URL=mongodb://mongodb/
+MONGO_URL=mongodb
 MONGO_PORT=27017
 MONGO_USER=mongo_user
 MONGO_PASSWORD=mongo_pwd
